@@ -21,6 +21,7 @@
   --glass:rgba(26,22,51,0.82);
   --border:rgba(160,130,255,0.16);
   --border2:rgba(160,130,255,0.32);
+
   --v:#9B8EFF;
   --lv:#C4B8FF;
   --pk:#FF7ED4;
@@ -28,9 +29,11 @@
   --pc:#FFB86C;
   --sk:#5CC8FF;
   --yw:#FFF176;
+
   --txt:#EDE9FF;
   --txt2:#A89EC9;
   --txt3:#6B628F;
+
   --r:14px;
   --rl:22px;
   --t:0.35s cubic-bezier(.4,0,.2,1);
@@ -52,25 +55,46 @@ body{background:var(--bg);color:var(--txt);font-family:var(--fb);line-height:1.6
 ::-webkit-scrollbar{width:5px;}
 ::-webkit-scrollbar-track{background:var(--bg);}
 ::-webkit-scrollbar-thumb{background:var(--v);border-radius:99px;}
+
 body::after{content:'';pointer-events:none;position:fixed;inset:0;z-index:1000;opacity:.028;
 background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:180px;}
 
-/* ═══════════════════════════════════════
-   STICKER SYSTEM
-═══════════════════════════════════════ */
-.sticker{position:fixed;z-index:500;cursor:grab;user-select:none;-webkit-user-select:none;filter:drop-shadow(0 4px 14px rgba(0,0,0,.35));transition:transform .15s ease,filter .15s ease;will-change:transform;}
+.sticker{
+  position:fixed;z-index:500;cursor:grab;
+  user-select:none;-webkit-user-select:none;
+  filter:drop-shadow(0 4px 14px rgba(0,0,0,.35));
+  transition:transform .15s ease,filter .15s ease;
+  will-change:transform;
+}
 .sticker:hover{filter:drop-shadow(0 6px 20px rgba(155,142,255,.5));transform:scale(1.08) rotate(2deg);}
 .sticker.dragging{cursor:grabbing;filter:drop-shadow(0 10px 28px rgba(155,142,255,.7));transform:scale(1.13) rotate(-3deg);z-index:600;}
-.sticker-tooltip{position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);background:var(--card2);border:1px solid var(--border2);color:var(--lv);font-family:var(--fm);font-size:.62rem;padding:.25rem .6rem;border-radius:6px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s ease;letter-spacing:.06em;}
+.sticker-tooltip{
+  position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);
+  background:var(--card2);border:1px solid var(--border2);
+  color:var(--lv);font-family:var(--fm);font-size:.62rem;
+  padding:.25rem .6rem;border-radius:6px;white-space:nowrap;
+  opacity:0;pointer-events:none;transition:opacity .2s ease;
+  letter-spacing:.06em;
+}
 .sticker:hover .sticker-tooltip{opacity:1;}
-#drag-hint{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);background:var(--glass);backdrop-filter:blur(16px);border:1px solid var(--border2);border-radius:99px;padding:.45rem 1.2rem;font-family:var(--fm);font-size:.7rem;color:var(--lv);z-index:400;display:flex;align-items:center;gap:.5rem;animation:fadeInUp .8s ease 1.5s both,fadeOut .5s ease 5s forwards;pointer-events:none;}
+
+#drag-hint{
+  position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);
+  background:var(--glass);backdrop-filter:blur(16px);
+  border:1px solid var(--border2);border-radius:99px;
+  padding:.45rem 1.2rem;font-family:var(--fm);font-size:.7rem;
+  color:var(--lv);z-index:400;display:flex;align-items:center;gap:.5rem;
+  animation:fadeInUp .8s ease 1.5s both,fadeOut .5s ease 5s forwards;
+  pointer-events:none;
+}
 @keyframes fadeInUp{from{opacity:0;transform:translate(-50%,12px);}to{opacity:1;transform:translate(-50%,0);}}
 @keyframes fadeOut{to{opacity:0;}}
 
-/* ═══════════════════════════════════════
-   NAV
-═══════════════════════════════════════ */
-nav{position:fixed;top:0;left:0;right:0;z-index:300;display:flex;align-items:center;justify-content:space-between;padding:1rem 2.5rem;background:var(--glass);backdrop-filter:blur(24px);border-bottom:1px solid var(--border);transition:padding var(--t);}
+nav{position:fixed;top:0;left:0;right:0;z-index:300;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1rem 2.5rem;
+  background:var(--glass);backdrop-filter:blur(24px);
+  border-bottom:1px solid var(--border);transition:padding var(--t);}
 .nav-logo{font-family:var(--fn);font-weight:900;font-size:1.25rem;text-decoration:none;color:var(--txt);display:flex;align-items:center;gap:.5rem;}
 .logo-dot{width:8px;height:8px;border-radius:50%;background:linear-gradient(135deg,var(--v),var(--pk));animation:pulse 2s infinite;}
 @keyframes pulse{0%,100%{transform:scale(1);}50%{transform:scale(1.5);}}
@@ -90,9 +114,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:300;display:flex;align-items:cen
 .mob-nav.open{display:flex;}
 .mob-nav a{color:var(--txt2);text-decoration:none;font-weight:600;padding:.4rem 0;}
 
-/* ═══════════════════════════════════════
-   LAYOUT HELPERS
-═══════════════════════════════════════ */
 .wrap{max-width:1100px;margin:0 auto;padding:5.5rem 2rem;}
 .wrap-alt{padding:5.5rem 2rem;background:var(--bg2);}
 .wrap-alt-in{max-width:1100px;margin:0 auto;}
@@ -104,17 +125,22 @@ h2.sec-title{font-family:var(--fn);font-size:clamp(1.8rem,4vw,2.7rem);font-weigh
 .rv.on{opacity:1;transform:translateY(0);}
 .rv.d1{transition-delay:.1s;}.rv.d2{transition-delay:.2s;}.rv.d3{transition-delay:.3s;}
 
-/* ═══════════════════════════════════════
-   HERO
-═══════════════════════════════════════ */
 #hero{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:6rem 2rem 4rem;}
-.hero-glow{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 65% 55% at 18% 28%,rgba(155,142,255,.18) 0%,transparent 65%),radial-gradient(ellipse 50% 45% at 82% 68%,rgba(255,126,212,.12) 0%,transparent 65%),radial-gradient(ellipse 40% 35% at 55% 10%,rgba(63,221,190,.07) 0%,transparent 65%);}
-.hero-grid{position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:55px 55px;mask-image:radial-gradient(ellipse at center,black 20%,transparent 75%);opacity:.5;}
+.hero-glow{position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse 65% 55% at 18% 28%,rgba(155,142,255,.18) 0%,transparent 65%),
+  radial-gradient(ellipse 50% 45% at 82% 68%,rgba(255,126,212,.12) 0%,transparent 65%),
+  radial-gradient(ellipse 40% 35% at 55% 10%,rgba(63,221,190,.07) 0%,transparent 65%);}
+.hero-grid{position:absolute;inset:0;pointer-events:none;
+  background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);
+  background-size:55px 55px;mask-image:radial-gradient(ellipse at center,black 20%,transparent 75%);opacity:.5;}
 .hero-in{position:relative;z-index:2;max-width:820px;width:100%;text-align:center;}
 .hero-chip{display:inline-flex;align-items:center;gap:.5rem;background:var(--card);border:1px solid var(--border2);padding:.35rem 1rem;border-radius:99px;font-family:var(--fm);font-size:.7rem;color:var(--mt);margin-bottom:1.5rem;animation:sld .6s ease both;}
 .hero-chip-dot{width:6px;height:6px;border-radius:50%;background:var(--mt);animation:pulse 2s infinite;}
 @keyframes sld{from{opacity:0;transform:translateY(-16px);}to{opacity:1;transform:translateY(0);}}
-.hero-name{font-family:var(--fn);font-size:clamp(2.6rem,8vw,5rem);font-weight:900;letter-spacing:-.03em;line-height:1.0;margin-bottom:.5rem;background:linear-gradient(135deg,var(--txt) 0%,var(--lv) 35%,var(--pk) 70%,var(--pc) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:slu .7s ease .1s both;}
+.hero-name{font-family:var(--fn);font-size:clamp(2.6rem,8vw,5rem);font-weight:900;letter-spacing:-.03em;line-height:1.0;margin-bottom:.5rem;
+  background:linear-gradient(135deg,var(--txt) 0%,var(--lv) 35%,var(--pk) 70%,var(--pc) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  animation:slu .7s ease .1s both;}
 .hero-tw{font-family:var(--fm);font-size:clamp(.88rem,2.2vw,1.1rem);color:var(--txt2);margin-bottom:1.5rem;min-height:2em;animation:slu .7s ease .2s both;}
 #tw{color:var(--v);}
 .crs{animation:blink 1s step-end infinite;color:var(--pk);}
@@ -132,9 +158,6 @@ h2.sec-title{font-family:var(--fn);font-size:clamp(1.8rem,4vw,2.7rem);font-weigh
 .scroll-h{position:absolute;bottom:1.8rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.35rem;color:var(--txt3);font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;animation:bob 2.5s ease infinite;}
 @keyframes bob{0%,100%{transform:translateX(-50%) translateY(0);}50%{transform:translateX(-50%) translateY(8px);}}
 
-/* ═══════════════════════════════════════
-   ABOUT
-═══════════════════════════════════════ */
 .about-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:4rem;align-items:center;}
 .about-txt p{color:var(--txt2);margin-bottom:1rem;line-height:1.8;font-size:.93rem;}
 .about-chips{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;margin-top:1.75rem;}
@@ -150,9 +173,6 @@ h2.sec-title{font-family:var(--fn);font-size:clamp(1.8rem,4vw,2.7rem);font-weigh
 .code-body{font-family:var(--fm);font-size:.76rem;color:var(--txt2);line-height:2.1;}
 .ck{color:var(--v);}.cs{color:var(--mt);}.cn{color:var(--pc);}
 
-/* ═══════════════════════════════════════
-   SKILLS
-═══════════════════════════════════════ */
 .skill-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(265px,1fr));gap:1.2rem;}
 .scat{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:1.4rem;transition:all var(--t);}
 .scat:hover{border-color:var(--border2);transform:translateY(-3px);box-shadow:0 10px 28px rgba(155,142,255,.1);}
@@ -166,9 +186,6 @@ h2.sec-title{font-family:var(--fn);font-size:clamp(1.8rem,4vw,2.7rem);font-weigh
 .stag.m{background:rgba(63,221,190,.1);border-color:rgba(63,221,190,.3);color:var(--mt);}
 .stag.p{background:rgba(255,126,212,.1);border-color:rgba(255,126,212,.3);color:var(--pk);}
 
-/* ═══════════════════════════════════════
-   TIMELINE
-═══════════════════════════════════════ */
 .tl{position:relative;padding-left:2rem;}
 .tl::before{content:'';position:absolute;left:0;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,var(--v),var(--pk),transparent);}
 .tl-item{position:relative;margin-bottom:3rem;}
@@ -180,9 +197,6 @@ h2.sec-title{font-family:var(--fn);font-size:clamp(1.8rem,4vw,2.7rem);font-weigh
 .tl-pts li{display:flex;align-items:flex-start;gap:.6rem;color:var(--txt2);font-size:.87rem;line-height:1.6;}
 .tl-pts li::before{content:'↗';color:var(--v);flex-shrink:0;font-size:.82rem;margin-top:.05rem;}
 
-/* ═══════════════════════════════════════
-   PROJECTS
-═══════════════════════════════════════ */
 .frow{display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:2.5rem;}
 .fbtn{font-size:.77rem;font-weight:700;padding:.36rem .95rem;border-radius:99px;border:1.5px solid var(--border);background:var(--card);color:var(--txt2);cursor:pointer;transition:all var(--t);font-family:var(--fb);}
 .fbtn:hover,.fbtn.on{background:linear-gradient(135deg,var(--v),var(--pk));border-color:transparent;color:#fff;}
@@ -202,9 +216,6 @@ h2.sec-title{font-family:var(--fn);font-size:clamp(1.8rem,4vw,2.7rem);font-weigh
 .pstack{display:flex;flex-wrap:wrap;gap:.32rem;}
 .ptag{font-family:var(--fm);font-size:.64rem;background:var(--bg3);border:1px solid var(--border);color:var(--txt3);padding:.18rem .48rem;border-radius:5px;}
 
-/* ═══════════════════════════════════════
-   EXPERTISE BANDS
-═══════════════════════════════════════ */
 .eband{background:var(--card);border:1px solid var(--border);border-radius:var(--rl);padding:2.3rem;margin-bottom:1.2rem;position:relative;overflow:hidden;transition:all var(--t);}
 .eband:hover{border-color:var(--border2);}
 .eband-char{position:absolute;right:1.5rem;top:50%;transform:translateY(-50%);font-size:5rem;opacity:.05;pointer-events:none;}
@@ -215,9 +226,6 @@ h2.sec-title{font-family:var(--fn);font-size:clamp(1.8rem,4vw,2.7rem);font-weigh
 .epill:hover{border-color:var(--v);color:var(--v);}
 .edot{width:5px;height:5px;border-radius:50%;flex-shrink:0;}
 
-/* ═══════════════════════════════════════
-   EDUCATION
-═══════════════════════════════════════ */
 .edu-card{background:var(--card);border:1px solid var(--border);border-radius:var(--rl);padding:2.2rem;display:flex;gap:1.8rem;align-items:flex-start;position:relative;overflow:hidden;transition:all var(--t);}
 .edu-card:hover{border-color:var(--border2);}
 .edu-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(to bottom,var(--v),var(--pk));}
@@ -227,9 +235,6 @@ h2.sec-title{font-family:var(--fn);font-size:clamp(1.8rem,4vw,2.7rem);font-weigh
 .edu-yr{font-family:var(--fm);font-size:.7rem;color:var(--mt);}
 .edu-desc{color:var(--txt2);font-size:.84rem;margin-top:.7rem;line-height:1.7;}
 
-/* ═══════════════════════════════════════
-   CERTS
-═══════════════════════════════════════ */
 .certs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(228px,1fr));gap:.95rem;}
 .cert{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:1.15rem;display:flex;align-items:center;gap:.8rem;transition:all var(--t);}
 .cert:hover{border-color:var(--v);transform:translateY(-2px);}
@@ -237,17 +242,11 @@ h2.sec-title{font-family:var(--fn);font-size:clamp(1.8rem,4vw,2.7rem);font-weigh
 .cert-name{font-size:.79rem;font-weight:600;color:var(--txt);line-height:1.4;}
 .cert-iss{font-size:.68rem;color:var(--txt3);margin-top:.15rem;}
 
-/* ═══════════════════════════════════════
-   RESUME BAND
-═══════════════════════════════════════ */
 .res-band{background:linear-gradient(135deg,var(--card),var(--card2));border:1px solid var(--border);border-radius:var(--rl);padding:4rem 2rem;text-align:center;position:relative;overflow:hidden;}
 .res-band-glow{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 60% 60% at 50% 50%,rgba(155,142,255,.11),transparent 70%);}
 .btn-dl{background:linear-gradient(135deg,var(--v),var(--mt));color:#fff;border:none;padding:1rem 2.8rem;border-radius:99px;font-size:.97rem;font-weight:800;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:.55rem;box-shadow:0 6px 26px rgba(155,142,255,.4);transition:all var(--t);}
 .btn-dl:hover{transform:translateY(-3px);box-shadow:0 14px 42px rgba(155,142,255,.55);}
 
-/* ═══════════════════════════════════════
-   CONTACT  ← UPDATED SECTION
-═══════════════════════════════════════ */
 .cg{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;}
 .ctxt p{color:var(--txt2);line-height:1.8;margin-bottom:2rem;font-size:.92rem;}
 .clinks{display:flex;flex-direction:column;gap:.7rem;}
@@ -257,21 +256,15 @@ h2.sec-title{font-family:var(--fn);font-size:clamp(1.8rem,4vw,2.7rem);font-weigh
 .cl{font-size:.7rem;color:var(--txt3);}.cv{font-size:.86rem;font-weight:600;}
 .cform{display:flex;flex-direction:column;gap:.85rem;}
 .fg{display:flex;flex-direction:column;gap:.32rem;}
-.fg-row{display:grid;grid-template-columns:1fr 1fr;gap:.85rem;}
 .flbl{font-size:.75rem;font-weight:600;color:var(--txt2);letter-spacing:.03em;}
-.finp,.ftxt{background:var(--card);border:1px solid var(--border);color:var(--txt);border-radius:var(--r);padding:.75rem .95rem;font-family:var(--fb);font-size:.87rem;transition:border-color var(--t);outline:none;width:100%;}
+.finp,.ftxt{background:var(--card);border:1px solid var(--border);color:var(--txt);border-radius:var(--r);padding:.75rem .95rem;font-family:var(--fb);font-size:.87rem;transition:border-color var(--t);outline:none;}
 .finp:focus,.ftxt:focus{border-color:var(--v);}
 .ftxt{resize:vertical;min-height:110px;}
-.fsub{background:linear-gradient(135deg,var(--v),var(--pk));color:#fff;border:none;padding:.85rem 2rem;border-radius:var(--r);font-size:.9rem;font-weight:700;cursor:pointer;transition:all var(--t);display:flex;align-items:center;justify-content:center;gap:.5rem;}
-.fsub:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 8px 26px rgba(155,142,255,.4);}
-.fsub:disabled{opacity:.65;cursor:not-allowed;}
-#fst{font-size:.8rem;text-align:center;min-height:1.4em;}
-#fst.ok{color:var(--mt);}
-#fst.err{color:var(--pk);}
+.fsub{background:linear-gradient(135deg,var(--v),var(--pk));color:#fff;border:none;padding:.85rem 2rem;border-radius:var(--r);font-size:.9rem;font-weight:700;cursor:pointer;transition:all var(--t);}
+.fsub:hover{transform:translateY(-2px);box-shadow:0 8px 26px rgba(155,142,255,.4);}
+.fsub:disabled{opacity:.6;cursor:not-allowed;transform:none;}
+#fst{font-size:.8rem;text-align:center;min-height:1.4em;color:var(--mt);}
 
-/* ═══════════════════════════════════════
-   FOOTER
-═══════════════════════════════════════ */
 footer{background:var(--bg3);border-top:1px solid var(--border);padding:2.3rem 2rem;text-align:center;}
 .fl{font-family:var(--fn);font-weight:900;font-size:1.15rem;background:linear-gradient(135deg,var(--v),var(--pk));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:.3rem;}
 .fsb{color:var(--txt3);font-size:.76rem;margin-bottom:.9rem;}
@@ -281,9 +274,6 @@ footer{background:var(--bg3);border-top:1px solid var(--border);padding:2.3rem 2
 .fcopy{font-size:.7rem;color:var(--txt3);}
 .fcopy span{color:var(--v);}
 
-/* ═══════════════════════════════════════
-   RESPONSIVE
-═══════════════════════════════════════ */
 @media(max-width:860px){
   .about-grid,.cg{grid-template-columns:1fr;}
   .nav-links{display:none;}
@@ -293,7 +283,6 @@ footer{background:var(--bg3);border-top:1px solid var(--border);padding:2.3rem 2
   .hero-stats{gap:1.75rem;}
   .sticker{display:none;}
   #drag-hint{display:none;}
-  .fg-row{grid-template-columns:1fr;}
 }
 @media(max-width:520px){.about-chips{grid-template-columns:1fr 1fr;}.res-band{padding:2.5rem 1rem;}}
 </style>
@@ -302,17 +291,111 @@ footer{background:var(--bg3);border-top:1px solid var(--border);padding:2.3rem 2
 
 <div id="drag-hint">✦ drag the stickers around!</div>
 
-<!-- STICKERS (unchanged) -->
-<div class="sticker" id="s1" style="top:12%;left:4%;width:80px;"><div class="sticker-tooltip">robot.py 🤖</div><svg viewBox="0 0 80 90" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="14" y="34" width="52" height="40" rx="12" fill="#1A1633" stroke="#9B8EFF" stroke-width="2"/><rect x="22" y="14" width="36" height="24" rx="9" fill="#221D42" stroke="#C4B8FF" stroke-width="1.8"/><line x1="40" y1="14" x2="40" y2="7" stroke="#C4B8FF" stroke-width="2" stroke-linecap="round"/><circle cx="40" cy="5" r="4" fill="#FF7ED4"/><circle cx="31" cy="26" r="4.5" fill="#5CC8FF" fill-opacity=".9"/><circle cx="49" cy="26" r="4.5" fill="#5CC8FF" fill-opacity=".9"/><circle cx="31" cy="26" r="2" fill="#fff"/><circle cx="49" cy="26" r="2" fill="#fff"/><path d="M32 33 Q40 38 48 33" stroke="#3FDDBE" stroke-width="2.2" stroke-linecap="round" fill="none"/><rect x="28" y="47" width="24" height="8" rx="4" fill="#9B8EFF" fill-opacity=".35"/><line x1="14" y1="50" x2="5" y2="60" stroke="#9B8EFF" stroke-width="2.5" stroke-linecap="round"/><line x1="66" y1="50" x2="75" y2="60" stroke="#9B8EFF" stroke-width="2.5" stroke-linecap="round"/><line x1="28" y1="74" x2="26" y2="86" stroke="#C4B8FF" stroke-width="2.5" stroke-linecap="round"/><line x1="52" y1="74" x2="54" y2="86" stroke="#C4B8FF" stroke-width="2.5" stroke-linecap="round"/><text x="0" y="20" font-size="10" fill="#FFB86C" opacity=".8">✦</text><text x="68" y="16" font-size="8" fill="#FF7ED4" opacity=".7">★</text></svg></div>
-<div class="sticker" id="s2" style="top:15%;right:5%;width:76px;"><div class="sticker-tooltip">in orbit 🪐</div><svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg"><ellipse cx="40" cy="40" rx="20" ry="20" fill="#FF7ED4" fill-opacity=".25" stroke="#FF7ED4" stroke-width="1.8"/><ellipse cx="40" cy="40" rx="35" ry="11" fill="none" stroke="#FFB86C" stroke-width="1.8" stroke-dasharray="4 3"/><circle cx="34" cy="34" r="5" fill="#fff" fill-opacity=".12"/><circle cx="44" cy="29" r="3" fill="#fff" fill-opacity=".08"/><text x="60" y="18" font-size="9" fill="#9B8EFF" opacity=".7">•</text><text x="6" y="65" font-size="8" fill="#3FDDBE" opacity=".6">✦</text></svg></div>
-<div class="sticker" id="s3" style="top:50%;left:2%;width:64px;"><div class="sticker-tooltip">&lt;/code&gt; 💜</div><svg viewBox="0 0 70 56" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 6 L4 28 L20 50" stroke="#3FDDBE" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M50 6 L66 28 L50 50" stroke="#3FDDBE" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/><line x1="26" y1="48" x2="44" y2="8" stroke="#9B8EFF" stroke-width="2" stroke-linecap="round"/></svg></div>
-<div class="sticker" id="s4" style="bottom:22%;right:4%;width:70px;"><div class="sticker-tooltip">shining ✨</div><svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M36 8 L38.5 28 L58 26 L42 38 L52 56 L36 44 L20 56 L30 38 L14 26 L33.5 28 Z" fill="#FFF176" fill-opacity=".35" stroke="#FFB86C" stroke-width="1.5"/><circle cx="36" cy="36" r="6" fill="#FFB86C" fill-opacity=".6"/><text x="55" y="18" font-size="10" fill="#FF7ED4" opacity=".7">•</text><text x="4" y="60" font-size="9" fill="#9B8EFF" opacity=".6">✦</text></svg></div>
-<div class="sticker" id="s5" style="top:38%;right:3%;width:76px;"><div class="sticker-tooltip">GCP ☁️</div><svg viewBox="0 0 80 60" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="10" width="68" height="40" rx="11" fill="#5CC8FF" fill-opacity=".1" stroke="#5CC8FF" stroke-width="1.6"/><rect x="14" y="20" width="22" height="5" rx="2.5" fill="#5CC8FF" fill-opacity=".55"/><rect x="14" y="29" width="30" height="5" rx="2.5" fill="#9B8EFF" fill-opacity=".55"/><rect x="14" y="38" width="16" height="5" rx="2.5" fill="#3FDDBE" fill-opacity=".55"/><circle cx="62" cy="22" r="4" fill="#3FDDBE" fill-opacity=".75"/><circle cx="62" cy="32" r="4" fill="#FFB86C" fill-opacity=".75"/><circle cx="62" cy="42" r="4" fill="#FF7ED4" fill-opacity=".75"/></svg></div>
-<div class="sticker" id="s6" style="bottom:18%;left:4%;width:64px;"><div class="sticker-tooltip">made w/ love 💗</div><svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M32 54 C32 54 6 38 6 20 C6 12.3 12.3 6 20 6 C25 6 29.4 8.7 32 12.8 C34.6 8.7 39 6 44 6 C51.7 6 58 12.3 58 20 C58 38 32 54 32 54Z" fill="#FF7ED4" fill-opacity=".25" stroke="#FF7ED4" stroke-width="1.8"/><text x="20" y="34" font-size="13" fill="#fff" fill-opacity=".7" font-family="monospace">&lt;3</text></svg></div>
-<div class="sticker" id="s7" style="top:70%;right:5%;width:72px;"><div class="sticker-tooltip">AI brain 🧠</div><svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="36" cy="36" r="26" fill="#9B8EFF" fill-opacity=".12" stroke="#9B8EFF" stroke-width="1.5"/><circle cx="36" cy="16" r="5" fill="#9B8EFF" fill-opacity=".7"/><circle cx="16" cy="38" r="5" fill="#3FDDBE" fill-opacity=".7"/><circle cx="56" cy="38" r="5" fill="#FF7ED4" fill-opacity=".7"/><circle cx="26" cy="56" r="5" fill="#FFB86C" fill-opacity=".7"/><circle cx="46" cy="56" r="5" fill="#5CC8FF" fill-opacity=".7"/><circle cx="36" cy="36" r="5" fill="#C4B8FF" fill-opacity=".8"/><line x1="36" y1="21" x2="36" y2="31" stroke="#9B8EFF" stroke-width="1.2" stroke-opacity=".6"/><line x1="21" y1="38" x2="31" y2="36" stroke="#3FDDBE" stroke-width="1.2" stroke-opacity=".6"/><line x1="51" y1="38" x2="41" y2="36" stroke="#FF7ED4" stroke-width="1.2" stroke-opacity=".6"/><line x1="30" y1="51" x2="33" y2="41" stroke="#FFB86C" stroke-width="1.2" stroke-opacity=".6"/><line x1="42" y1="51" x2="39" y2="41" stroke="#5CC8FF" stroke-width="1.2" stroke-opacity=".6"/></svg></div>
-<div class="sticker" id="s8" style="top:28%;left:3%;width:60px;"><div class="sticker-tooltip">fuelled by coffee ☕</div><svg viewBox="0 0 60 70" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M18 14 Q16 8 18 2" stroke="#C4B8FF" stroke-width="1.8" stroke-linecap="round" fill="none"/><path d="M26 14 Q24 8 26 2" stroke="#C4B8FF" stroke-width="1.8" stroke-linecap="round" fill="none"/><path d="M34 14 Q32 8 34 2" stroke="#C4B8FF" stroke-width="1.8" stroke-linecap="round" fill="none"/><rect x="6" y="16" width="40" height="38" rx="8" fill="#1A1633" stroke="#9B8EFF" stroke-width="1.8"/><path d="M46 28 Q60 28 60 36 Q60 44 46 44" stroke="#9B8EFF" stroke-width="2" fill="none" stroke-linecap="round"/><rect x="10" y="28" width="32" height="22" rx="5" fill="#9B8EFF" fill-opacity=".2"/><ellipse cx="26" cy="56" rx="26" ry="6" fill="#221D42" stroke="#9B8EFF" stroke-width="1.5"/></svg></div>
+<div class="sticker" id="s1" style="top:12%;left:4%;width:80px;">
+  <div class="sticker-tooltip">robot.py 🤖</div>
+  <svg viewBox="0 0 80 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="14" y="34" width="52" height="40" rx="12" fill="#1A1633" stroke="#9B8EFF" stroke-width="2"/>
+    <rect x="22" y="14" width="36" height="24" rx="9" fill="#221D42" stroke="#C4B8FF" stroke-width="1.8"/>
+    <line x1="40" y1="14" x2="40" y2="7" stroke="#C4B8FF" stroke-width="2" stroke-linecap="round"/>
+    <circle cx="40" cy="5" r="4" fill="#FF7ED4"/>
+    <circle cx="31" cy="26" r="4.5" fill="#5CC8FF" fill-opacity=".9"/>
+    <circle cx="49" cy="26" r="4.5" fill="#5CC8FF" fill-opacity=".9"/>
+    <circle cx="31" cy="26" r="2" fill="#fff"/>
+    <circle cx="49" cy="26" r="2" fill="#fff"/>
+    <path d="M32 33 Q40 38 48 33" stroke="#3FDDBE" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+    <rect x="28" y="47" width="24" height="8" rx="4" fill="#9B8EFF" fill-opacity=".35"/>
+    <line x1="14" y1="50" x2="5" y2="60" stroke="#9B8EFF" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="66" y1="50" x2="75" y2="60" stroke="#9B8EFF" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="28" y1="74" x2="26" y2="86" stroke="#C4B8FF" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="52" y1="74" x2="54" y2="86" stroke="#C4B8FF" stroke-width="2.5" stroke-linecap="round"/>
+    <text x="0" y="20" font-size="10" fill="#FFB86C" opacity=".8">✦</text>
+    <text x="68" y="16" font-size="8" fill="#FF7ED4" opacity=".7">★</text>
+  </svg>
+</div>
 
-<!-- NAV -->
+<div class="sticker" id="s2" style="top:15%;right:5%;width:76px;">
+  <div class="sticker-tooltip">in orbit 🪐</div>
+  <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <ellipse cx="40" cy="40" rx="20" ry="20" fill="#FF7ED4" fill-opacity=".25" stroke="#FF7ED4" stroke-width="1.8"/>
+    <ellipse cx="40" cy="40" rx="35" ry="11" fill="none" stroke="#FFB86C" stroke-width="1.8" stroke-dasharray="4 3"/>
+    <circle cx="34" cy="34" r="5" fill="#fff" fill-opacity=".12"/>
+    <circle cx="44" cy="29" r="3" fill="#fff" fill-opacity=".08"/>
+    <text x="60" y="18" font-size="9" fill="#9B8EFF" opacity=".7">•</text>
+    <text x="6" y="65" font-size="8" fill="#3FDDBE" opacity=".6">✦</text>
+  </svg>
+</div>
+
+<div class="sticker" id="s3" style="top:50%;left:2%;width:64px;">
+  <div class="sticker-tooltip">&lt;/code&gt; 💜</div>
+  <svg viewBox="0 0 70 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M20 6 L4 28 L20 50" stroke="#3FDDBE" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    <path d="M50 6 L66 28 L50 50" stroke="#3FDDBE" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    <line x1="26" y1="48" x2="44" y2="8" stroke="#9B8EFF" stroke-width="2" stroke-linecap="round"/>
+  </svg>
+</div>
+
+<div class="sticker" id="s4" style="bottom:22%;right:4%;width:70px;">
+  <div class="sticker-tooltip">shining ✨</div>
+  <svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M36 8 L38.5 28 L58 26 L42 38 L52 56 L36 44 L20 56 L30 38 L14 26 L33.5 28 Z" fill="#FFF176" fill-opacity=".35" stroke="#FFB86C" stroke-width="1.5"/>
+    <circle cx="36" cy="36" r="6" fill="#FFB86C" fill-opacity=".6"/>
+    <text x="55" y="18" font-size="10" fill="#FF7ED4" opacity=".7">•</text>
+    <text x="4" y="60" font-size="9" fill="#9B8EFF" opacity=".6">✦</text>
+  </svg>
+</div>
+
+<div class="sticker" id="s5" style="top:38%;right:3%;width:76px;">
+  <div class="sticker-tooltip">GCP ☁️</div>
+  <svg viewBox="0 0 80 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="6" y="10" width="68" height="40" rx="11" fill="#5CC8FF" fill-opacity=".1" stroke="#5CC8FF" stroke-width="1.6"/>
+    <rect x="14" y="20" width="22" height="5" rx="2.5" fill="#5CC8FF" fill-opacity=".55"/>
+    <rect x="14" y="29" width="30" height="5" rx="2.5" fill="#9B8EFF" fill-opacity=".55"/>
+    <rect x="14" y="38" width="16" height="5" rx="2.5" fill="#3FDDBE" fill-opacity=".55"/>
+    <circle cx="62" cy="22" r="4" fill="#3FDDBE" fill-opacity=".75"/>
+    <circle cx="62" cy="32" r="4" fill="#FFB86C" fill-opacity=".75"/>
+    <circle cx="62" cy="42" r="4" fill="#FF7ED4" fill-opacity=".75"/>
+  </svg>
+</div>
+
+<div class="sticker" id="s6" style="bottom:18%;left:4%;width:64px;">
+  <div class="sticker-tooltip">made w/ love 💗</div>
+  <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M32 54 C32 54 6 38 6 20 C6 12.3 12.3 6 20 6 C25 6 29.4 8.7 32 12.8 C34.6 8.7 39 6 44 6 C51.7 6 58 12.3 58 20 C58 38 32 54 32 54Z" fill="#FF7ED4" fill-opacity=".25" stroke="#FF7ED4" stroke-width="1.8"/>
+    <text x="20" y="34" font-size="13" fill="#fff" fill-opacity=".7" font-family="monospace">&lt;3</text>
+  </svg>
+</div>
+
+<div class="sticker" id="s7" style="top:70%;right:5%;width:72px;">
+  <div class="sticker-tooltip">AI brain 🧠</div>
+  <svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="36" cy="36" r="26" fill="#9B8EFF" fill-opacity=".12" stroke="#9B8EFF" stroke-width="1.5"/>
+    <circle cx="36" cy="16" r="5" fill="#9B8EFF" fill-opacity=".7"/>
+    <circle cx="16" cy="38" r="5" fill="#3FDDBE" fill-opacity=".7"/>
+    <circle cx="56" cy="38" r="5" fill="#FF7ED4" fill-opacity=".7"/>
+    <circle cx="26" cy="56" r="5" fill="#FFB86C" fill-opacity=".7"/>
+    <circle cx="46" cy="56" r="5" fill="#5CC8FF" fill-opacity=".7"/>
+    <circle cx="36" cy="36" r="5" fill="#C4B8FF" fill-opacity=".8"/>
+    <line x1="36" y1="21" x2="36" y2="31" stroke="#9B8EFF" stroke-width="1.2" stroke-opacity=".6"/>
+    <line x1="21" y1="38" x2="31" y2="36" stroke="#3FDDBE" stroke-width="1.2" stroke-opacity=".6"/>
+    <line x1="51" y1="38" x2="41" y2="36" stroke="#FF7ED4" stroke-width="1.2" stroke-opacity=".6"/>
+    <line x1="30" y1="51" x2="33" y2="41" stroke="#FFB86C" stroke-width="1.2" stroke-opacity=".6"/>
+    <line x1="42" y1="51" x2="39" y2="41" stroke="#5CC8FF" stroke-width="1.2" stroke-opacity=".6"/>
+  </svg>
+</div>
+
+<div class="sticker" id="s8" style="top:28%;left:3%;width:60px;">
+  <div class="sticker-tooltip">fuelled by coffee ☕</div>
+  <svg viewBox="0 0 60 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M18 14 Q16 8 18 2" stroke="#C4B8FF" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+    <path d="M26 14 Q24 8 26 2" stroke="#C4B8FF" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+    <path d="M34 14 Q32 8 34 2" stroke="#C4B8FF" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+    <rect x="6" y="16" width="40" height="38" rx="8" fill="#1A1633" stroke="#9B8EFF" stroke-width="1.8"/>
+    <path d="M46 28 Q60 28 60 36 Q60 44 46 44" stroke="#9B8EFF" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <rect x="10" y="28" width="32" height="22" rx="5" fill="#9B8EFF" fill-opacity=".2"/>
+    <ellipse cx="26" cy="56" rx="26" ry="6" fill="#221D42" stroke="#9B8EFF" stroke-width="1.5"/>
+  </svg>
+</div>
+
 <nav id="nb">
   <a href="#" class="nav-logo"><span class="logo-dot"></span>Teja Sree</a>
   <ul class="nav-links">
@@ -339,7 +422,6 @@ footer{background:var(--bg3);border-top:1px solid var(--border);padding:2.3rem 2
   <a href="#contact" onclick="cm()">Contact</a>
 </div>
 
-<!-- HERO -->
 <section id="hero">
   <div class="hero-glow"></div>
   <div class="hero-grid"></div>
@@ -364,7 +446,6 @@ footer{background:var(--bg3);border-top:1px solid var(--border);padding:2.3rem 2
   </div>
 </section>
 
-<!-- ABOUT -->
 <section id="about">
   <div class="wrap">
     <div class="about-grid">
@@ -424,14 +505,14 @@ footer{background:var(--bg3);border-top:1px solid var(--border);padding:2.3rem 2
   </div>
 </section>
 
-<!-- SKILLS -->
-<div class="wrap-alt" id="skills">
+<section id="skills">
+<div class="wrap-alt">
 <div class="wrap-alt-in">
   <p class="eyebrow rv">Technical Skills</p>
   <h2 class="sec-title rv">The Stack I Work With</h2>
   <div class="sec-rule rv"></div>
   <div class="skill-grid">
-    <div class="scat rv"><div class="scat-top"><div class="sico" style="background:rgba(155,142,255,.12);">🐍</div><div class="scat-n">Languages</div></div><div class="stags"><span class="stag v">Python</span><span class="stag">CPP</span><span class="stag">SQL</span><span class="stag">Java</span></div></div>
+    <div class="scat rv"><div class="scat-top"><div class="sico" style="background:rgba(155,142,255,.12);">🐍</div><div class="scat-n">Languages</div></div><div class="stags"><span class="stag v">Python</span><span class="stag">SQL</span><span class="stag">Java</span></div></div>
     <div class="scat rv d1"><div class="scat-top"><div class="sico" style="background:rgba(63,221,190,.1);">⚡</div><div class="scat-n">Backend Development</div></div><div class="stags"><span class="stag v">FastAPI</span><span class="stag">Flask</span><span class="stag">REST APIs</span><span class="stag">Microservices</span><span class="stag">Async Programming</span><span class="stag">SQLAlchemy</span></div></div>
     <div class="scat rv d2"><div class="scat-top"><div class="sico" style="background:rgba(92,200,255,.1);">🗄️</div><div class="scat-n">Databases</div></div><div class="stags"><span class="stag">PostgreSQL</span><span class="stag">MySQL</span><span class="stag">AlloyDB</span><span class="stag m">ChromaDB</span><span class="stag m">Vector DB</span></div></div>
     <div class="scat rv d3"><div class="scat-top"><div class="sico" style="background:rgba(255,126,212,.08);">☁️</div><div class="scat-n">Cloud & DevOps</div></div><div class="stags"><span class="stag v">GCP</span><span class="stag">Cloud Run</span><span class="stag">Docker</span><span class="stag">Jenkins</span><span class="stag">CI/CD</span><span class="stag">IAM</span><span class="stag">Secret Manager</span></div></div>
@@ -440,7 +521,6 @@ footer{background:var(--bg3);border-top:1px solid var(--border);padding:2.3rem 2
 </div>
 </div>
 
-<!-- EXPERIENCE -->
 <section id="experience">
   <div class="wrap">
     <p class="eyebrow rv">Experience</p>
@@ -450,7 +530,7 @@ footer{background:var(--bg3);border-top:1px solid var(--border);padding:2.3rem 2
       <div class="tl-item rv">
         <div class="tl-dot"></div>
         <div class="tl-date">2024 — Present</div>
-        <div class="tl-role">Python Developer / AI Engineer</div>
+        <div class="tl-role">Python Developer</div>
         <div class="tl-co">Backend Engineering · Cloud Native · GenAI</div>
         <ul class="tl-pts">
           <li>Developing and maintaining Python-based backend applications and microservices using FastAPI and async programming patterns</li>
@@ -466,7 +546,6 @@ footer{background:var(--bg3);border-top:1px solid var(--border);padding:2.3rem 2
   </div>
 </section>
 
-<!-- PROJECTS -->
 <div class="wrap-alt" id="projects">
 <div class="wrap-alt-in">
   <p class="eyebrow rv">Projects</p>
@@ -480,27 +559,109 @@ footer{background:var(--bg3);border-top:1px solid var(--border);padding:2.3rem 2
     <button class="fbtn" onclick="fp('ml',this)">Machine Learning</button>
   </div>
   <div class="pgrid" id="pg">
-    <div class="pcard rv" data-cat="backend cloud" style="--pa:var(--v);--pb:var(--sk);"><div class="pcard-bg"><svg width="100" height="80" viewBox="0 0 100 80" fill="none"><rect x="6" y="10" width="88" height="60" rx="14" fill="#5CC8FF"/><rect x="14" y="22" width="28" height="6" rx="3" fill="#fff" fill-opacity=".4"/><rect x="14" y="34" width="40" height="6" rx="3" fill="#fff" fill-opacity=".4"/><rect x="14" y="46" width="20" height="6" rx="3" fill="#fff" fill-opacity=".4"/><circle cx="80" cy="25" r="5" fill="#3FDDBE" fill-opacity=".7"/><circle cx="80" cy="37" r="5" fill="#FFB86C" fill-opacity=".7"/><circle cx="80" cy="49" r="5" fill="#FF7ED4" fill-opacity=".7"/></svg></div><div class="ph"><div class="pico">⚡</div><a href="#" class="pgit"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg></a></div><h3 class="ptitle">AAADriveLookupPYMS</h3><p class="pdesc">Migrated a legacy Java Spring Boot microservice to Python FastAPI — async DB ops, AlloyDB IAM auth, Secret Manager, structured logging, Docker + Cloud Run deployment, Jenkins CI/CD.</p><div class="pimpact">📈 Improved maintainability, scalability & cloud-native readiness for enterprise infrastructure</div><div class="pstack"><span class="ptag">Python</span><span class="ptag">FastAPI</span><span class="ptag">SQLAlchemy</span><span class="ptag">AlloyDB</span><span class="ptag">Docker</span><span class="ptag">GCP</span><span class="ptag">Cloud Run</span><span class="ptag">Jenkins</span></div></div>
-    <div class="pcard rv d1" data-cat="ai cloud" style="--pa:var(--mt);--pb:var(--v);"><div class="pcard-bg"><svg width="90" height="90" viewBox="0 0 90 90" fill="none"><circle cx="45" cy="45" r="35" fill="#3FDDBE" fill-opacity=".5"/><circle cx="45" cy="34" r="16" fill="#1A1633"/><circle cx="37" cy="31" r="5" fill="#5CC8FF" fill-opacity=".9"/><circle cx="53" cy="31" r="5" fill="#5CC8FF" fill-opacity=".9"/><path d="M36 42 Q45 50 54 42" stroke="#3FDDBE" stroke-width="2.5" fill="none" stroke-linecap="round"/></svg></div><div class="ph"><div class="pico" style="background:rgba(63,221,190,.1);">🤖</div><a href="#" class="pgit"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg></a></div><h3 class="ptitle">Resume AI Screening System</h3><p class="pdesc">AI-powered resume screening using GCP ADK & Gemini LLMs. Parses resumes, extracts skills, matches JDs, ranks candidates, and generates recruiter-friendly evaluation reports via dashboard.</p><div class="pimpact">📈 Reduced manual screening effort & accelerated candidate shortlisting through AI</div><div class="pstack"><span class="ptag">Python</span><span class="ptag">GCP ADK</span><span class="ptag">Gemini</span><span class="ptag">LangChain</span><span class="ptag">ChromaDB</span><span class="ptag">FastAPI</span></div></div>
-    <div class="pcard rv d2" data-cat="ai ml" style="--pa:var(--pk);--pb:var(--v);"><div class="pcard-bg"><svg width="80" height="80" viewBox="0 0 80 80" fill="none"><circle cx="40" cy="40" r="30" fill="#FF7ED4" fill-opacity=".45"/><path d="M22 40 Q40 18 58 40 Q40 62 22 40Z" fill="#fff" fill-opacity=".15"/><circle cx="40" cy="40" r="9" fill="#FF7ED4"/><circle cx="40" cy="40" r="4" fill="#fff"/></svg></div><div class="ph"><div class="pico" style="background:rgba(255,126,212,.1);">🎵</div><a href="#" class="pgit"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg></a></div><h3 class="ptitle">Emotion-Based Music Recommendation</h3><p class="pdesc">Deep learning system detecting user emotions via CNN and recommending personalized music — accessibility-first design for visually impaired users with real-time recommendation updates.</p><div class="pimpact">📈 Improved accessibility & personalized content delivery through emotion-aware AI</div><div class="pstack"><span class="ptag">Python</span><span class="ptag">CNN</span><span class="ptag">Deep Learning</span><span class="ptag">TensorFlow</span></div></div>
-    <div class="pcard rv d3" data-cat="ai ml" style="--pa:#F59E0B;--pb:var(--pk);"><div class="pcard-bg"><svg width="80" height="80" viewBox="0 0 80 80" fill="none"><ellipse cx="40" cy="40" rx="30" ry="26" fill="#FFB86C" fill-opacity=".45"/><ellipse cx="40" cy="38" rx="18" ry="16" fill="#FFB86C" fill-opacity=".5"/><circle cx="32" cy="35" r="6" fill="#fff" fill-opacity=".45"/><circle cx="48" cy="35" r="6" fill="#fff" fill-opacity=".45"/><path d="M32 48 Q40 55 48 48" stroke="#fff" stroke-width="2.5" fill="none" stroke-linecap="round"/></svg></div><div class="ph"><div class="pico" style="background:rgba(245,158,11,.1);">🧠</div><a href="#" class="pgit"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg></a></div><h3 class="ptitle">Alzheimer's Detection via CNN</h3><p class="pdesc">Medical image analysis using MobileNet and VGG16 CNN architectures for early Alzheimer's detection from MRI scans — with comparative model evaluation and medical image preprocessing pipeline.</p><div class="pimpact">📈 High-accuracy MRI classification — demonstrating AI in healthcare diagnostics</div><div class="pstack"><span class="ptag">Python</span><span class="ptag">TensorFlow</span><span class="ptag">CNN</span><span class="ptag">MobileNet</span><span class="ptag">VGG16</span></div></div>
+
+    <div class="pcard rv" data-cat="backend cloud" style="--pa:var(--v);--pb:var(--sk);">
+      <div class="pcard-bg"><svg width="100" height="80" viewBox="0 0 100 80" fill="none"><rect x="6" y="10" width="88" height="60" rx="14" fill="#5CC8FF"/><rect x="14" y="22" width="28" height="6" rx="3" fill="#fff" fill-opacity=".4"/><rect x="14" y="34" width="40" height="6" rx="3" fill="#fff" fill-opacity=".4"/><rect x="14" y="46" width="20" height="6" rx="3" fill="#fff" fill-opacity=".4"/><circle cx="80" cy="25" r="5" fill="#3FDDBE" fill-opacity=".7"/><circle cx="80" cy="37" r="5" fill="#FFB86C" fill-opacity=".7"/><circle cx="80" cy="49" r="5" fill="#FF7ED4" fill-opacity=".7"/></svg></div>
+      <div class="ph">
+        <div class="pico">⚡</div>
+        <a href="https://github.com/TejaSreeeeee" target="_blank" class="pgit"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg></a>
+      </div>
+      <h3 class="ptitle">AAADriveLookupPYMS</h3>
+      <p class="pdesc">Migrated a legacy Java Spring Boot microservice to Python FastAPI — async DB ops, AlloyDB IAM auth, Secret Manager, structured logging, Docker + Cloud Run deployment, Jenkins CI/CD.</p>
+      <div class="pimpact">📈 Improved maintainability, scalability & cloud-native readiness for enterprise infrastructure</div>
+      <div class="pstack"><span class="ptag">Python</span><span class="ptag">FastAPI</span><span class="ptag">SQLAlchemy</span><span class="ptag">AlloyDB</span><span class="ptag">Docker</span><span class="ptag">GCP</span><span class="ptag">Cloud Run</span><span class="ptag">Jenkins</span></div>
+    </div>
+
+    <div class="pcard rv d1" data-cat="ai cloud" style="--pa:var(--mt);--pb:var(--v);">
+      <div class="pcard-bg"><svg width="90" height="90" viewBox="0 0 90 90" fill="none"><circle cx="45" cy="45" r="35" fill="#3FDDBE" fill-opacity=".5"/><circle cx="45" cy="34" r="16" fill="#1A1633"/><circle cx="37" cy="31" r="5" fill="#5CC8FF" fill-opacity=".9"/><circle cx="53" cy="31" r="5" fill="#5CC8FF" fill-opacity=".9"/><path d="M36 42 Q45 50 54 42" stroke="#3FDDBE" stroke-width="2.5" fill="none" stroke-linecap="round"/></svg></div>
+      <div class="ph">
+        <div class="pico" style="background:rgba(63,221,190,.1);">🤖</div>
+        <a href="https://github.com/TejaSreeeeee" target="_blank" class="pgit"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg></a>
+      </div>
+      <h3 class="ptitle">Resume AI Screening System</h3>
+      <p class="pdesc">AI-powered resume screening using GCP ADK & Gemini LLMs. Parses resumes, extracts skills, matches JDs, ranks candidates, and generates recruiter-friendly evaluation reports via dashboard.</p>
+      <div class="pimpact">📈 Reduced manual screening effort & accelerated candidate shortlisting through AI</div>
+      <div class="pstack"><span class="ptag">Python</span><span class="ptag">GCP ADK</span><span class="ptag">Gemini</span><span class="ptag">LangChain</span><span class="ptag">ChromaDB</span><span class="ptag">FastAPI</span></div>
+    </div>
+
+    <div class="pcard rv d2" data-cat="ai ml" style="--pa:var(--pk);--pb:var(--v);">
+      <div class="pcard-bg"><svg width="80" height="80" viewBox="0 0 80 80" fill="none"><circle cx="40" cy="40" r="30" fill="#FF7ED4" fill-opacity=".45"/><path d="M22 40 Q40 18 58 40 Q40 62 22 40Z" fill="#fff" fill-opacity=".15"/><circle cx="40" cy="40" r="9" fill="#FF7ED4"/><circle cx="40" cy="40" r="4" fill="#fff"/></svg></div>
+      <div class="ph">
+        <div class="pico" style="background:rgba(255,126,212,.1);">🎵</div>
+        <a href="https://github.com/TejaSreeeeee" target="_blank" class="pgit"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg></a>
+      </div>
+      <h3 class="ptitle">Emotion-Based Music Recommendation</h3>
+      <p class="pdesc">Deep learning system detecting user emotions via CNN and recommending personalized music — accessibility-first design for visually impaired users with real-time recommendation updates.</p>
+      <div class="pimpact">📈 Improved accessibility & personalized content delivery through emotion-aware AI</div>
+      <div class="pstack"><span class="ptag">Python</span><span class="ptag">CNN</span><span class="ptag">Deep Learning</span><span class="ptag">TensorFlow</span></div>
+    </div>
+
+    <div class="pcard rv d3" data-cat="ai ml" style="--pa:#F59E0B;--pb:var(--pk);">
+      <div class="pcard-bg"><svg width="80" height="80" viewBox="0 0 80 80" fill="none"><ellipse cx="40" cy="40" rx="30" ry="26" fill="#FFB86C" fill-opacity=".45"/><ellipse cx="40" cy="38" rx="18" ry="16" fill="#FFB86C" fill-opacity=".5"/><circle cx="32" cy="35" r="6" fill="#fff" fill-opacity=".45"/><circle cx="48" cy="35" r="6" fill="#fff" fill-opacity=".45"/><path d="M32 48 Q40 55 48 48" stroke="#fff" stroke-width="2.5" fill="none" stroke-linecap="round"/></svg></div>
+      <div class="ph">
+        <div class="pico" style="background:rgba(245,158,11,.1);">🧠</div>
+        <a href="https://github.com/TejaSreeeeee" target="_blank" class="pgit"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg></a>
+      </div>
+      <h3 class="ptitle">Alzheimer's Detection via CNN</h3>
+      <p class="pdesc">Medical image analysis using MobileNet and VGG16 CNN architectures for early Alzheimer's detection from MRI scans — with comparative model evaluation and medical image preprocessing pipeline.</p>
+      <div class="pimpact">📈 High-accuracy MRI classification — demonstrating AI in healthcare diagnostics</div>
+      <div class="pstack"><span class="ptag">Python</span><span class="ptag">TensorFlow</span><span class="ptag">CNN</span><span class="ptag">MobileNet</span><span class="ptag">VGG16</span></div>
+    </div>
+
   </div>
 </div>
 </div>
 
-<!-- EXPERTISE -->
 <section id="expertise">
   <div class="wrap">
     <p class="eyebrow rv">Expertise</p>
     <h2 class="sec-title rv">Core Engineering Domains</h2>
     <div class="sec-rule rv"></div>
-    <div class="eband rv" style="border-left:3px solid var(--mt);"><div class="eband-char">🧬</div><div class="eband-title" style="color:var(--mt);">Generative AI & LLM Engineering</div><div class="eband-sub">Building intelligent applications with foundation models, retrieval-augmented generation, and multi-agent frameworks on GCP</div><div class="epills"><div class="epill"><span class="edot" style="background:var(--mt)"></span>RAG Pipelines</div><div class="epill"><span class="edot" style="background:var(--mt)"></span>LangChain</div><div class="epill"><span class="edot" style="background:var(--mt)"></span>GCP ADK</div><div class="epill"><span class="edot" style="background:var(--mt)"></span>Vector Databases</div><div class="epill"><span class="edot" style="background:var(--mt)"></span>Prompt Engineering</div><div class="epill"><span class="edot" style="background:var(--mt)"></span>Semantic & Hybrid Search</div><div class="epill"><span class="edot" style="background:var(--mt)"></span>Embeddings</div><div class="epill"><span class="edot" style="background:var(--mt)"></span>Gemini LLMs</div></div></div>
-    <div class="eband rv" style="border-left:3px solid var(--v);"><div class="eband-char">⚡</div><div class="eband-title" style="color:var(--v);">Backend Engineering</div><div class="eband-sub">High-performance async APIs and microservice architectures designed for production scale</div><div class="epills"><div class="epill"><span class="edot" style="background:var(--v)"></span>FastAPI</div><div class="epill"><span class="edot" style="background:var(--v)"></span>Async Programming</div><div class="epill"><span class="edot" style="background:var(--v)"></span>REST API Design</div><div class="epill"><span class="edot" style="background:var(--v)"></span>Microservices</div><div class="epill"><span class="edot" style="background:var(--v)"></span>SQLAlchemy</div><div class="epill"><span class="edot" style="background:var(--v)"></span>AlloyDB / PostgreSQL</div><div class="epill"><span class="edot" style="background:var(--v)"></span>Java → Python Migration</div></div></div>
-    <div class="eband rv" style="border-left:3px solid var(--sk);"><div class="eband-char">☁️</div><div class="eband-title" style="color:var(--sk);">Cloud & DevOps</div><div class="eband-sub">End-to-end cloud-native deployments with enterprise security, containers, and automated pipelines</div><div class="epills"><div class="epill"><span class="edot" style="background:var(--sk)"></span>Google Cloud Platform</div><div class="epill"><span class="edot" style="background:var(--sk)"></span>Cloud Run</div><div class="epill"><span class="edot" style="background:var(--sk)"></span>Docker</div><div class="epill"><span class="edot" style="background:var(--sk)"></span>Jenkins CI/CD</div><div class="epill"><span class="edot" style="background:var(--sk)"></span>IAM Authentication</div><div class="epill"><span class="edot" style="background:var(--sk)"></span>Secret Manager</div></div></div>
+    <div class="eband rv" style="border-left:3px solid var(--mt);">
+      <div class="eband-char">🧬</div>
+      <div class="eband-title" style="color:var(--mt);">Generative AI & LLM Engineering</div>
+      <div class="eband-sub">Building intelligent applications with foundation models, retrieval-augmented generation, and multi-agent frameworks on GCP</div>
+      <div class="epills">
+        <div class="epill"><span class="edot" style="background:var(--mt)"></span>RAG Pipelines</div>
+        <div class="epill"><span class="edot" style="background:var(--mt)"></span>LangChain</div>
+        <div class="epill"><span class="edot" style="background:var(--mt)"></span>GCP ADK</div>
+        <div class="epill"><span class="edot" style="background:var(--mt)"></span>Vector Databases</div>
+        <div class="epill"><span class="edot" style="background:var(--mt)"></span>Prompt Engineering</div>
+        <div class="epill"><span class="edot" style="background:var(--mt)"></span>Semantic & Hybrid Search</div>
+        <div class="epill"><span class="edot" style="background:var(--mt)"></span>Embeddings</div>
+        <div class="epill"><span class="edot" style="background:var(--mt)"></span>Gemini LLMs</div>
+      </div>
+    </div>
+    <div class="eband rv" style="border-left:3px solid var(--v);">
+      <div class="eband-char">⚡</div>
+      <div class="eband-title" style="color:var(--v);">Backend Engineering</div>
+      <div class="eband-sub">High-performance async APIs and microservice architectures designed for production scale</div>
+      <div class="epills">
+        <div class="epill"><span class="edot" style="background:var(--v)"></span>FastAPI</div>
+        <div class="epill"><span class="edot" style="background:var(--v)"></span>Async Programming</div>
+        <div class="epill"><span class="edot" style="background:var(--v)"></span>REST API Design</div>
+        <div class="epill"><span class="edot" style="background:var(--v)"></span>Microservices</div>
+        <div class="epill"><span class="edot" style="background:var(--v)"></span>SQLAlchemy</div>
+        <div class="epill"><span class="edot" style="background:var(--v)"></span>AlloyDB / PostgreSQL</div>
+        <div class="epill"><span class="edot" style="background:var(--v)"></span>Java → Python Migration</div>
+      </div>
+    </div>
+    <div class="eband rv" style="border-left:3px solid var(--sk);">
+      <div class="eband-char">☁️</div>
+      <div class="eband-title" style="color:var(--sk);">Cloud & DevOps</div>
+      <div class="eband-sub">End-to-end cloud-native deployments with enterprise security, containers, and automated pipelines</div>
+      <div class="epills">
+        <div class="epill"><span class="edot" style="background:var(--sk)"></span>Google Cloud Platform</div>
+        <div class="epill"><span class="edot" style="background:var(--sk)"></span>Cloud Run</div>
+        <div class="epill"><span class="edot" style="background:var(--sk)"></span>Docker</div>
+        <div class="epill"><span class="edot" style="background:var(--sk)"></span>Jenkins CI/CD</div>
+        <div class="epill"><span class="edot" style="background:var(--sk)"></span>IAM Authentication</div>
+        <div class="epill"><span class="edot" style="background:var(--sk)"></span>Secret Manager</div>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- EDUCATION -->
 <div class="wrap-alt" id="education">
 <div class="wrap-alt-in">
   <p class="eyebrow rv">Education</p>
@@ -534,7 +695,6 @@ footer{background:var(--bg3);border-top:1px solid var(--border);padding:2.3rem 2
 </div>
 </div>
 
-<!-- CERTIFICATIONS -->
 <section id="certifications">
   <div class="wrap">
     <p class="eyebrow rv">Certifications</p>
@@ -544,12 +704,11 @@ footer{background:var(--bg3);border-top:1px solid var(--border);padding:2.3rem 2
       <div class="cert rv"><div class="cert-ico" style="background:linear-gradient(135deg,var(--sk),var(--v));">🧠</div><div><div class="cert-name">Microsoft Azure Fundamentals (AZ-900)</div><div class="cert-iss">Microsoft · Completed</div></div></div>
       <div class="cert rv d1"><div class="cert-ico" style="background:linear-gradient(135deg,var(--mt),var(--sk));">💻</div><div><div class="cert-name">Fundamentals of Parallelism on Intel Architecture</div><div class="cert-iss">Coursera · Software Development</div></div></div>
       <div class="cert rv d2"><div class="cert-ico" style="background:linear-gradient(135deg,var(--v),var(--pk));">📊</div><div><div class="cert-name">Power BI Data Analyst Associate (PL-300)</div><div class="cert-iss">Microsoft · Completed</div></div></div>
-      <div class="cert rv d3"><div class="cert-ico" style="background:linear-gradient(135deg,var(--pc),var(--pk));">⚡</div><div><div class="cert-name">Cyber T-20 Series</div><div class="cert-iss">Kriyavan Cyber Forensic Services · Cyber Security</div></div></div>
+      <div class="cert rv d3"><div class="cert-ico" style="background:linear-gradient(135deg,var(--pc),var(--pk));">⚡</div><div><div class="cert-name">Cyber T-20 Series</div><div class="cert-iss">Kriyavan Cyber Forensic Services Pvt. Ltd. · Cyber Security</div></div></div>
     </div>
   </div>
 </section>
 
-<!-- RESUME -->
 <section id="resume" style="padding:2rem;">
   <div style="max-width:820px;margin:0 auto;">
     <div class="res-band rv">
@@ -557,7 +716,7 @@ footer{background:var(--bg3);border-top:1px solid var(--border);padding:2.3rem 2
       <div style="font-size:2.8rem;margin-bottom:1rem;position:relative;z-index:1;">📄</div>
       <h2 class="sec-title" style="position:relative;z-index:1;">Want the full picture?</h2>
       <p style="color:var(--txt2);margin-bottom:2rem;position:relative;z-index:1;max-width:420px;margin-left:auto;margin-right:auto;">Download my resume for a comprehensive view of my experience, skills, and projects.</p>
-      <a href="https://drive.google.com/file/d/1TbnndC1smlLF46mSm5iCddU6rHaI3gOk/view?usp=drive_link" class="btn-dl" target="_blank">
+      <a href="https://drive.google.com/file/d/1TbnndC1smlLF46mSm5iCddU6rHaI3gOk/view?usp=drive_link" target="_blank" class="btn-dl">
         <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
         Download Resume
       </a>
@@ -565,9 +724,6 @@ footer{background:var(--bg3);border-top:1px solid var(--border);padding:2.3rem 2
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════
-     CONTACT — WITH GOOGLE SHEETS SAVING
-═══════════════════════════════════════ -->
 <div class="wrap-alt" id="contact">
 <div class="wrap-alt-in">
   <p class="eyebrow rv">Contact</p>
@@ -577,55 +733,46 @@ footer{background:var(--bg3);border-top:1px solid var(--border);padding:2.3rem 2
     <div class="ctxt rv">
       <p>Open to full-time Python / Backend / GenAI roles, collaborative projects, and conversations about cloud architecture and LLM applications. If you're building something interesting — reach out!</p>
       <div class="clinks">
-        <a href="https://mail.google.com/mail/?view=cm&to=tejusomireddy@gmail.com" target="_blank" class="clink"><div class="clink-ico">📧</div><div><div class="cl">Email</div><div class="cv">tejusomireddy@gmail.com</div></div></a>
+        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=tejusomireddy@gmail.com"
+target="_blank" class="clink"><div class="clink-ico">📧</div><div><div class="cl">Email</div><div class="cv">tejusomireddy@gmail.com</div></div></a>
         <a href="https://www.linkedin.com/in/tejasree-somireddy-441929246/" target="_blank" class="clink"><div class="clink-ico">💼</div><div><div class="cl">LinkedIn</div><div class="cv">linkedin.com/in/tejasree-somireddy</div></div></a>
         <a href="https://github.com/TejaSreeeeee" target="_blank" class="clink"><div class="clink-ico"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg></div><div><div class="cl">GitHub</div><div class="cv">github.com/TejaSreeeeee</div></div></a>
       </div>
     </div>
-
-    <!-- ── CONTACT FORM ── -->
     <div class="rv d2">
-      <form class="cform" id="contact-form" onsubmit="hs(event)">
-        <div class="fg-row">
-          <div class="fg">
-            <label class="flbl" for="f-name">Your Name *</label>
-            <input type="text" id="f-name" class="finp" placeholder="Alex Recruiter" required/>
-          </div>
-          <div class="fg">
-            <label class="flbl" for="f-email">Email *</label>
-            <input type="email" id="f-email" class="finp" placeholder="hello@company.com" required/>
-          </div>
-        </div>
-        <div class="fg-row">
-          <div class="fg">
-            <label class="flbl" for="f-company">Company</label>
-            <input type="text" id="f-company" class="finp" placeholder="Acme Corp"/>
-          </div>
-          <div class="fg">
-            <label class="flbl" for="f-role">Role / Opportunity</label>
-            <input type="text" id="f-role" class="finp" placeholder="Python Developer"/>
-          </div>
-        </div>
+      <div class="cform">
         <div class="fg">
-          <label class="flbl" for="f-subject">Subject *</label>
-          <input type="text" id="f-subject" class="finp" placeholder="Opportunity / Collaboration / Query" required/>
-        </div>
-        <div class="fg">
-          <label class="flbl" for="f-message">Message *</label>
-          <textarea id="f-message" class="ftxt" placeholder="Tell me about the role or project..." required></textarea>
-        </div>
-        <button type="submit" class="fsub" id="f-submit">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-          Send Message
-        </button>
+  <label class="flbl">Your Name</label>
+  <input type="text" class="finp" id="name" placeholder="Alex Recruiter" required />
+</div>
+
+<div class="fg">
+  <label class="flbl">Email</label>
+  <input type="email" class="finp" id="email" placeholder="hello@company.com" required />
+</div>
+
+<div class="fg">
+  <label class="flbl">Company</label>
+  <input type="text" class="finp" id="company" placeholder="Oracle / Google / Amazon" />
+</div>
+
+<div class="fg">
+  <label class="flbl">Subject</label>
+  <input type="text" class="finp" id="subject" placeholder="Opportunity / Collaboration / Query" />
+</div>
+
+<div class="fg">
+  <label class="flbl">Message</label>
+  <textarea class="ftxt" id="message" placeholder="Tell me about the role or project..." required></textarea>
+</div>
+        <button class="fsub" id="fsubBtn" onclick="hs()">Send Message →</button>
         <div id="fst"></div>
-      </form>
+      </div>
     </div>
   </div>
 </div>
 </div>
 
-<!-- FOOTER -->
 <footer>
   <div style="max-width:1100px;margin:0 auto;">
     <div class="fl">Teja Sree Somireddy</div>
@@ -633,104 +780,145 @@ footer{background:var(--bg3);border-top:1px solid var(--border);padding:2.3rem 2
     <div class="fsoc">
       <a href="https://www.linkedin.com/in/tejasree-somireddy-441929246/" target="_blank">💼</a>
       <a href="https://github.com/TejaSreeeeee" target="_blank"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg></a>
-      <a href="https://mail.google.com/mail/?view=cm&to=tejusomireddy@gmail.com" target="_blank">📧</a>
+      <a href="https://mail.google.com/mail/?view=cm&fs=1&to=tejusomireddy@gmail.com"
+target="_blank">📧</a>
     </div>
     <div class="fcopy">Crafted with <span>✦</span> by Teja Sree Somireddy &nbsp;·&nbsp; © 2025-2026</div>
   </div>
 </footer>
 
 <script>
-/* ── GOOGLE SHEETS URL ─────────────────────────────────────────────
-   STEP: Replace this with your Apps Script Web App URL after setup
-──────────────────────────────────────────────────────────────────── */
-const SHEET_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
-
-/* ── TYPEWRITER ── */
 const ph=["Python Developer","Backend Engineer","GenAI Enthusiast","FastAPI Specialist","GCP Cloud Engineer","RAG Pipeline Builder"];
 let pi=0,ci=0,dl=false;
 const tw=document.getElementById('tw');
 function tp(){const w=ph[pi];if(!dl){tw.textContent=w.slice(0,++ci);if(ci===w.length){dl=true;setTimeout(tp,1900);return;}}else{tw.textContent=w.slice(0,--ci);if(ci===0){dl=false;pi=(pi+1)%ph.length;}}setTimeout(tp,dl?55:95);}
 tp();
 
-/* ── THEME ── */
 let dark=true;
 document.getElementById('thB').addEventListener('click',()=>{dark=!dark;document.documentElement.setAttribute('data-theme',dark?'':'light');document.getElementById('thB').textContent=dark?'🌙':'☀️';});
 
-/* ── MOBILE NAV ── */
 document.getElementById('ham').addEventListener('click',()=>document.getElementById('mn').classList.toggle('open'));
 function cm(){document.getElementById('mn').classList.remove('open');}
 
-/* ── SCROLL REVEAL ── */
 const ro=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('on');});},{threshold:.1,rootMargin:'0px 0px -40px 0px'});
 document.querySelectorAll('.rv').forEach(el=>ro.observe(el));
 
-/* ── PROJECT FILTER ── */
 function fp(cat,btn){document.querySelectorAll('.fbtn').forEach(b=>b.classList.remove('on'));btn.classList.add('on');document.querySelectorAll('.pcard').forEach(c=>{c.style.display=(cat==='all'||c.dataset.cat.includes(cat))?'':'none';});}
 
-/* ── CONTACT FORM → GOOGLE SHEETS ── */
-async function hs(e) {
-  e.preventDefault();
-  const btn = document.getElementById('f-submit');
-  const st  = document.getElementById('fst');
+/* ══════════════════════════════════════
+   CONTACT FORM — POSTS TO GOOGLE APPS SCRIPT
+══════════════════════════════════════ */
+const SHEET_URL = 'https://script.google.com/macros/s/AKfycbxSyvXykVCSXPo2NrdC0WigOQEeo3xxm4ZUeu5iHzPhKfthETcJBrHJQd3UbAhlYrQP/exec';
 
-  const name    = document.getElementById('f-name').value.trim();
-  const email   = document.getElementById('f-email').value.trim();
-  const company = document.getElementById('f-company').value.trim();
-  const role    = document.getElementById('f-role').value.trim();
-  const subject = document.getElementById('f-subject').value.trim();
-  const message = document.getElementById('f-message').value.trim();
+async function hs(){
 
-  // Show sending state
-  btn.disabled  = true;
-  btn.innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="animation:spin .8s linear infinite"><path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/><path d="M3.6 9h16.8M3.6 15h16.8"/></svg> Sending...';
+  const n = document.getElementById('name').value.trim();
+  const e = document.getElementById('email').value.trim();
+  const c = document.getElementById('company').value.trim();
+  const subj = document.getElementById('subject').value.trim();
+  const m = document.getElementById('message').value.trim();
+
+  const st = document.getElementById('fst');
+  const btn = document.getElementById('fsubBtn');
+
+  if(!n || !e || !m){
+    st.textContent = 'Please fill in all required fields.';
+    st.style.color = 'var(--pk)';
+    return;
+  }
+
+  btn.textContent = 'Sending...';
+  btn.disabled = true;
   st.textContent = '';
-  st.className = '';
 
-  try {
-    await fetch(SHEET_URL, {
-      method:  'POST',
-      mode:    'no-cors',   // required for Apps Script
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, email, company, role, subject, message,
-                             timestamp: new Date().toLocaleString() }),
+  try{
+
+    const payload = {
+      name: n,
+      email: e,
+      company: c,
+      subject: subj || '(no subject)',
+      message: m,
+      timestamp: new Date().toLocaleString('en-IN',{
+        timeZone:'Asia/Kolkata'
+      })
+    };
+
+    await fetch(SHEET_URL,{
+      method:'POST',
+      mode:'no-cors',
+      headers:{
+        'Content-Type':'text/plain;charset=utf-8'
+      },
+      body: JSON.stringify(payload)
     });
 
-    // no-cors gives opaque response — if fetch didn't throw, it succeeded
-    st.textContent = '✓ Message sent! I\'ll get back to you soon 💜';
-    st.className   = 'ok';
-    document.getElementById('contact-form').reset();
+    st.textContent = "✦ Message received! I'll get back to you soon.";
+    st.style.color = 'var(--mt)';
 
-  } catch (err) {
-    st.textContent = '✗ Something went wrong. Please email me directly.';
-    st.className   = 'err';
-  } finally {
-    btn.disabled  = false;
-    btn.innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Send Message';
+    document.getElementById('name').value = '';
+    document.getElementById('email').value = '';
+    document.getElementById('company').value = '';
+    document.getElementById('subject').value = '';
+    document.getElementById('message').value = '';
+
+  }catch(err){
+
+    console.error(err);
+
+    st.textContent = '✕ Something went wrong.';
+    st.style.color = 'var(--pk)';
+
+  }finally{
+
+    btn.textContent = 'Send Message →';
+    btn.disabled = false;
+
   }
 }
 
-/* ── NAV SHRINK ── */
 window.addEventListener('scroll',()=>{document.getElementById('nb').style.padding=window.scrollY>80?'.65rem 2.5rem':'1rem 2.5rem';});
 
-/* ── DRAG-AND-DROP STICKERS ── */
 (function(){
-  const stickers=document.querySelectorAll('.sticker');
-  stickers.forEach(el=>{
+  const stickers = document.querySelectorAll('.sticker');
+  stickers.forEach(el => {
     let ox=0,oy=0,dragging=false;
-    function gp(e){return e.touches?{x:e.touches[0].clientX,y:e.touches[0].clientY}:{x:e.clientX,y:e.clientY};}
-    function dn(e){e.preventDefault();dragging=true;const p=gp(e),r=el.getBoundingClientRect();ox=p.x-r.left;oy=p.y-r.top;el.classList.add('dragging');el.style.transition='none';}
-    function mv(e){if(!dragging)return;e.preventDefault();const p=gp(e);let nx=p.x-ox,ny=p.y-oy;nx=Math.max(0,Math.min(nx,window.innerWidth-el.offsetWidth));ny=Math.max(0,Math.min(ny,window.innerHeight-el.offsetHeight));el.style.left=nx+'px';el.style.top=ny+'px';el.style.right='auto';el.style.bottom='auto';}
-    function up(){if(!dragging)return;dragging=false;el.classList.remove('dragging');el.style.transition='';}
-    el.addEventListener('mousedown',dn);el.addEventListener('touchstart',dn,{passive:false});
-    window.addEventListener('mousemove',mv);window.addEventListener('touchmove',mv,{passive:false});
-    window.addEventListener('mouseup',up);window.addEventListener('touchend',up);
+    function getPos(e){return e.touches?{x:e.touches[0].clientX,y:e.touches[0].clientY}:{x:e.clientX,y:e.clientY};}
+    function onDown(e){
+      e.preventDefault();
+      dragging=true;
+      const p=getPos(e);
+      const rect=el.getBoundingClientRect();
+      ox=p.x-rect.left; oy=p.y-rect.top;
+      el.classList.add('dragging');
+      el.style.transition='none';
+    }
+    function onMove(e){
+      if(!dragging)return;
+      e.preventDefault();
+      const p=getPos(e);
+      let nx=p.x-ox, ny=p.y-oy;
+      const mw=window.innerWidth-el.offsetWidth;
+      const mh=window.innerHeight-el.offsetHeight;
+      nx=Math.max(0,Math.min(nx,mw));
+      ny=Math.max(0,Math.min(ny,mh));
+      el.style.left=nx+'px'; el.style.top=ny+'px';
+      el.style.right='auto'; el.style.bottom='auto';
+    }
+    function onUp(){
+      if(!dragging)return;
+      dragging=false;
+      el.classList.remove('dragging');
+      el.style.transition='';
+    }
+    el.addEventListener('mousedown',onDown);
+    el.addEventListener('touchstart',onDown,{passive:false});
+    window.addEventListener('mousemove',onMove);
+    window.addEventListener('touchmove',onMove,{passive:false});
+    window.addEventListener('mouseup',onUp);
+    window.addEventListener('touchend',onUp);
   });
 })();
-
-/* ── SPIN KEYFRAME for send button ── */
-const style=document.createElement('style');
-style.textContent='@keyframes spin{to{transform:rotate(360deg)}}';
-document.head.appendChild(style);
 </script>
 </body>
 </html>
